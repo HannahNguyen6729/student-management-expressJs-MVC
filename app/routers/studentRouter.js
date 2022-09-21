@@ -7,6 +7,14 @@ const {
   updatedStudentController,
   deletedStudentController,
 } = require("../controllers/studentController");
+const {
+  logFeatureMiddleware,
+  anotherMiddleware,
+} = require("../middlewares/logger/logger");
+const {
+  checkEmpty,
+  checkNumberClass,
+} = require("../middlewares/validation/studentValidation");
 let studentList = [
   {
     id: 1,
@@ -29,12 +37,17 @@ let studentList = [
 ];
 
 //get all students
-studentRouter.get("/", getStudentListController);
+studentRouter.get(
+  "/",
+  logFeatureMiddleware,
+  anotherMiddleware,
+  getStudentListController
+);
 
 //get a detail student
 studentRouter.get("/:id", getDetailStudentcontroller);
 //create a new student
-studentRouter.post("/", createStudentController);
+studentRouter.post("/", checkEmpty, checkNumberClass, createStudentController);
 
 //update a student
 studentRouter.put("/:id", updatedStudentController);
