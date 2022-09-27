@@ -15,26 +15,6 @@ const {
   checkEmpty,
   checkNumberClass,
 } = require("../middlewares/validation/studentValidation");
-let studentList = [
-  {
-    id: 1,
-    name: "Anna",
-    age: 17,
-    numberClass: 11,
-  },
-  {
-    id: 2,
-    name: "Hannah",
-    age: 18,
-    numberClass: 12,
-  },
-  {
-    id: 3,
-    name: "Tommy",
-    age: 16,
-    numberClass: 10,
-  },
-];
 
 //get all students
 studentRouter.get(

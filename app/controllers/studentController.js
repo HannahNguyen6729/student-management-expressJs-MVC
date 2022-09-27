@@ -6,8 +6,8 @@ const {
   deleteSt,
 } = require("../services/studentService");
 
-const getStudentListController = (req, res) => {
-  const studentList = getListSt();
+const getStudentListController = async (req, res) => {
+  const studentList = await getListSt();
   if (studentList) {
     res.status(200).send(studentList);
   } else {
@@ -15,24 +15,24 @@ const getStudentListController = (req, res) => {
   }
 };
 
-const getDetailStudentcontroller = (req, res) => {
+const getDetailStudentcontroller = async (req, res) => {
   const { id } = req.params;
-  const student = getDetailSt(id);
+  const student = await getDetailSt(id);
   if (student) {
-    //console.log(student);
     res.status(200).send(student);
   } else {
     res.status(404).send("NOT FOUND");
   }
 };
-const createStudentController = (req, res) => {
-  const newStudent = createSt(req, res);
+const createStudentController = async (req, res) => {
+  let student = req.body;
+  const newStudent = await createSt(student);
   res.status(201).send(newStudent);
 };
-const updatedStudentController = (req, res) => {
+const updatedStudentController = async (req, res) => {
   const { id } = req.params;
   const { name, age, numberClass } = req.body;
-  const updatedStudent = updateSt(id, name, age, numberClass);
+  const updatedStudent = await updateSt(id, name, age, numberClass);
   if (updatedStudent) {
     res.status(200).send(updatedStudent);
   } else {
