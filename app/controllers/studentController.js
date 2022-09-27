@@ -39,9 +39,9 @@ const updatedStudentController = async (req, res) => {
     res.status(404).send("NOT FOUND");
   }
 };
-const deletedStudentController = (req, res) => {
+const deletedStudentController = async (req, res) => {
   const { id } = req.params;
-  const deletedStudent = deleteSt(id);
+  const deletedStudent = await deleteSt(id);
   if (deletedStudent) {
     res.status(200).send(deletedStudent);
   } else {
