@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = 3000;
 const router = require("./routers/rootRouter");
+app.use(cors());
 // modify req, res to JSON
 app.use(express.json());
 
